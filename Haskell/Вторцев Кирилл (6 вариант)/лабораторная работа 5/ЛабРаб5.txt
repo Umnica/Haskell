@@ -1,0 +1,36 @@
+{-
+ќпределить следующие функции с использованием функций высшего пор€дка
+1) ‘ункци€ midAr вычислени€ арифметического среднего элементов списка выществен10
+ных чисел с использованием функции foldr
+2) ‘ункци€ skMult, вычисл€юща€ скал€раное произведение двух список (использу€
+функции foldr и zipWith)
+3) ‘ункци€ countEven, возвращающа€ количество четных элементов в списке
+4) ‘ункци€ quicksort, осуществл€юща€ быструю сортировку списка
+5) ќпределенна€ в пред пункте функци€ quicksort сортирует список в пордке возрастани€. ќбобщить ее: пусть она принимает еще один аргумент - функцрю сравнени€ типа
+a-> a -> Bool и сортирует список в соответсвие с ней
+-}
+
+--1
+--midAr
+midAr :: [Double] -> Double
+midAr (x) = (foldr (+) 0 x) / (fromIntegral (length x))
+
+--2
+--zipWith и skMult
+zipWiths :: (a->b->c) -> [a]->[b]->[c]
+zipWiths z (a:as) (b:bs) = z a b : zipWiths z as bs
+zipWiths _ _ _ = []
+skMult :: [Integer] -> [Integer] -> Integer
+skMult xs ys = ( foldr (+) 0 (zipWiths (*) xs ys ) )
+--3
+--countEven
+countEven : : [Int] ?> In t
+countEven xs = co u n t e r even xs
+co u n t e r : : ( I n t ?> Bool) ?> [ I n t ] ?> I n t
+co u n t e r f xs = f o l d l (\ acc y ?> i f ( f y ) then acc+1 e l s e acc ) 0 xs
+--4
+--quickSorts
+q ui c k S o r t s : : [ I n t ] ?> [ I n t ]
+q ui c k S o r t s [ ] = [ ]
+q ui c k S o r t s ( x : xs )= q ui c k S o r t s ( f i l t e r (<x ) xs ) ++ [ x ] ++ q ui c k S o r t s ( f i l t e r
+(>=x ) xs )
